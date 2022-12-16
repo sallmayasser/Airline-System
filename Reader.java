@@ -19,19 +19,19 @@ public class Reader implements Runnable{
      
          try {
           
-             
+             MainFrame.read_mutex.acquire(); 
             ++MainFrame.read_count ;
             if(MainFrame.read_count == 1) {
                     MainFrame.rw_mutex.acquire();
                         }
-            
+            MainFrame.read_mutex.release();
              // ***** CRITICAL SECTION ***** //
              System.out.println("reader"+ "  : "+ MainFrame.resources);
              
              MainFrame.jTextArea1.append("Seats Number Viewed by Customer :   " + Thread.currentThread().getName() + "           Seats Number is:   " + resources +"\n");
-          
+             MainFrame.read_mutex.acquire();
             --MainFrame.read_count;
-          
+             MainFrame.read_mutex.release();
             if(MainFrame.read_count == 0){
            MainFrame.rw_mutex.release();
             }
