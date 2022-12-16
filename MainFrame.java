@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import java.util.Random;
 
 public class MainFrame extends javax.swing.JFrame {
-// new semaphore that controls access to out_count
+
     public MainFrame() {
         initComponents();
 
