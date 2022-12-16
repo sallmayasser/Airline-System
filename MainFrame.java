@@ -13,7 +13,13 @@ import java.util.logging.Logger;
 import java.util.Random;
 
 public class MainFrame extends javax.swing.JFrame {
-// new semaphore that controls access to out_count
+  // INITIALIZATION //
+
+public static int resources = 1000;
+public static int read_count = 0;   
+
+public static Semaphore rw_mutex = new Semaphore(1);
+public static Semaphore read_mutex = new Semaphore(1);
     public MainFrame() {
         initComponents();
 
@@ -138,7 +144,26 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+            int i , j ;
+       Random R = new Random();
+     Reader r = new Reader();
+     Writer w = new Writer ();
+     jTextArea1.selectAll();
+     jTextArea1.replaceSelection(" ");
+   
+        for ( i=1,j=1 ; i <=Integer.parseInt(ReaderNum.getText()) || j<= Integer.parseInt(WritterNum.getText()) ; i++,j++){
+       
+              if (i<= Integer.parseInt(ReaderNum.getText())){
+                 Thread t1 =  new Thread(r,R.nextInt(1,50) + " :");
+                  t1.start();
+         
+     
+      }
+              if (j<= Integer.parseInt(WritterNum.getText())){
+                new Thread(w,R.nextInt(1,50) + " :").start();
+              
+     
+      }
     
     }//GEN-LAST:event_jButton2ActionPerformed
 
