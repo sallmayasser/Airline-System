@@ -174,6 +174,7 @@ public static Semaphore out_mutex = new Semaphore(1);
      
       }
     
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
