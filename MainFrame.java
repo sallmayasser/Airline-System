@@ -16,10 +16,19 @@ public class MainFrame extends javax.swing.JFrame {
   // INITIALIZATION //
 
 public static int resources = 1000;
-public static int read_count = 0;   
+public static int in_count = 0, out_count = 0;   
+//  here read_count = in_count - out_count 
 
-public static Semaphore rw_mutex = new Semaphore(1);
-public static Semaphore read_mutex = new Semaphore(1);
+public static boolean writer_waiting = false;
+
+
+public static Semaphore rw_mutex = new Semaphore(0);
+
+public static Semaphore entry_mutex = new Semaphore(1);  
+
+
+public static Semaphore out_mutex = new Semaphore(1);
+
     public MainFrame() {
         initComponents();
 
